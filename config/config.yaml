@@ -1,0 +1,12 @@
+router:
+  port: 9090
+
+mysql:
+  host: 106.13.236.225
+  port: 3303
+  user: LDJL
+  passwd: huangjg@1001
+  database: DABC
+
+
+
