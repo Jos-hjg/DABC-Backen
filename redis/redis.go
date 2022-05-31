@@ -14,7 +14,7 @@ func InitRedis() (*redis.Client, error) {
 		Password: config.C.Redis.Password,
 		DB:       config.C.Redis.DB,
 	})
-	_, err := rdb.Ping(ctx).Result()
+	_, err := rdb.Get(ctx, "test1").Result()
 	if err != nil {
 		return nil, err
 	}
