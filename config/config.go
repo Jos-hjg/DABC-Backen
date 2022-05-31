@@ -6,12 +6,14 @@ import (
 )
 
 type Config struct {
-	Router Router
-	Mysql  Mysql
+	Router Router `yaml:"router"`
+	Mysql  Mysql  `yaml:"mysql"`
+	Redis  Redis  `yaml:"redis"`
+	Auth   Auth   `yaml:"auth"`
 }
 
 type Router struct {
-	Port string
+	Port string `yaml:"port"`
 }
 
 type Mysql struct {
@@ -22,9 +24,20 @@ type Mysql struct {
 	Database string `yaml:"database"`
 }
 
+type Redis struct {
+	Host     string `yaml:"host"`
+	Port     string `yaml:"port"`
+	Password string `yaml:"password"`
+	DB       int    `yaml:"db"`
+}
+
+type Auth struct {
+	SignKey string `yaml:"signkey"`
+}
+
 var C *Config = &Config{}
 
-func Init(cfgFile string) {
+func InitCfg(cfgFile string) {
 	if cfgFile != "" {
 		if err := configor.New(&configor.Config{AutoReload: true}).Load(C, cfgFile); err != nil {
 			log.Fatal("init config fail", err)

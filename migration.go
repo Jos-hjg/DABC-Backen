@@ -9,9 +9,8 @@ import (
 )
 
 func main() {
-	config.Init("./config/config.yaml")
+	config.InitCfg("./config/config.yaml")
 	//初始化数据库连接
-	log.Println(config.C)
 	DSN := config.C.Mysql.User + ":" + config.C.Mysql.Passwd + "@tcp(" + config.C.Mysql.Host + ":" + config.C.Mysql.Port + ")/" + config.C.Mysql.Database + "?charset=utf8&parseTime=true"
 	db, err := gorm.Open("mysql", DSN)
 	if err != nil {

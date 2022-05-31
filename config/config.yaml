@@ -8,5 +8,13 @@ mysql:
   passwd: huangjg@1001
   database: DABC
 
+redis:
+  host: 106.13.236.225
+  port: 6379
+  password: huangjg
+  db: 0
+
+auth:
+  signkey: askjdfhasldkfjlkajsdf
 
 
