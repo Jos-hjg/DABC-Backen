@@ -3,7 +3,6 @@ package main
 import (
 	"dabc/config"
 	"dabc/database"
-	"dabc/redis"
 	"dabc/router"
 	"log"
 )
@@ -18,11 +17,11 @@ func main() {
 		defer db.Close()
 	}
 
-	if rdb, err := redis.InitRedis(); err != nil {
-		log.Fatal(err)
-	} else {
-		defer rdb.Close()
-	}
+	//if rdb, err := redis.InitRedis(); err != nil {
+	//	log.Fatal(err)
+	//} else {
+	//	defer rdb.Close()
+	//}
 
 	r := router.InitRouter()
 	r.Run(":" + config.C.Router.Port)

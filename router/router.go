@@ -1,6 +1,7 @@
 package router
 
 import (
+	ac "dabc/controllers"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +11,9 @@ func InitRouter() *gin.Engine {
 
 	r.Use(cors.Default())
 	//TODO: any router?
-	//r.GET("/router", controller.methods)
-
+	users := r.Group("/users")
+	users.POST("/login", ac.UserLogin)
+	users.POST("/auth", ac.CheckAuth)
+	users.POST("/create", ac.CreateUser)
 	return r
 }
