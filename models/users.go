@@ -5,8 +5,8 @@ import (
 )
 
 type UserLogin struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	Username string `json:"username" binding:"required" form:"username"`
+	Password string `json:"password" binding:"required" form:"password"`
 }
 
 type Users struct {
@@ -19,15 +19,14 @@ type Users struct {
 }
 
 type User struct {
-	UserName string `json:"username" binding:"required" form:"username"`
-	Password string `json:"password" binding:"required,gte=8" form:"password"`
+	UserName        string `json:"username" binding:"required" form:"username"`
+	Password        string `json:"password" binding:"required,gte=8" form:"password"`
 	PasswordConfirm string `json:"password_confirm" binding:"required,eqfield=Password" form:"password_confirm"`
-	NickName string `json:"nickname" form:"nickname"`
-	Address  string `json:"address" form:"address" binding:"required"`
-	Phone    string `json:"phone" form:"phone"`
-	Signature string `json:"signature" form:"signature" binding:"required"`
+	NickName        string `json:"nickname" form:"nickname"`
+	Address         string `json:"address" form:"address" binding:"required"`
+	Phone           string `json:"phone" form:"phone"`
+	Signature       string `json:"signature" form:"signature" binding:"required"`
 }
-
 
 var LoginValidation = ErrorType{
 	"Username": {
@@ -44,11 +43,11 @@ var CreateValidation = ErrorType{
 	},
 	"Password": {
 		"required": "密码必须",
-		"gte": "密码长度至少8位",
+		"gte":      "密码长度至少8位",
 	},
 	"PasswordConfirm": {
 		"required": "确认密码必须",
-		"eqfield": "密码不一致",
+		"eqfield":  "密码不一致",
 	},
 	"Signature": {
 		"required": "签名必须",
@@ -57,4 +56,3 @@ var CreateValidation = ErrorType{
 		"required": "钱包地址必须",
 	},
 }
-

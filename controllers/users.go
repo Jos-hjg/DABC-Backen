@@ -15,8 +15,8 @@ import (
 	"time"
 )
 
+/*用户登录*/
 func UserLogin(ctx *gin.Context) {
-	salt := "the salt"
 	user := models.Users{}
 	data := &models.UserLogin{}
 	if err := ctx.ShouldBind(data); err != nil {
@@ -30,7 +30,7 @@ func UserLogin(ctx *gin.Context) {
 	}
 	database.Mysql.Where("username = ?", data.Username).First(&user)
 	fmt.Println(user)
-	pwd := fmt.Sprintf("%x", sha512.Sum512([]byte(data.Password+salt)))
+	pwd := fmt.Sprintf("%x", sha512.Sum512([]byte(data.Password+data.Username+config.C.Auth.Salt)))
 	fmt.Println(pwd)
 	if pwd != user.Password {
 		ctx.JSON(http.StatusOK, gin.H{
@@ -64,6 +64,11 @@ func UserLogin(ctx *gin.Context) {
 
 }
 
+/*
+验证签名登录
+Header附带Authorization签名参数
+签名前缀必须以"dabc-t "开头
+*/
 func CheckAuth(ctx *gin.Context) {
 	headers := ctx.GetHeader("Authorization")
 	log.Println(headers)
@@ -83,14 +88,13 @@ func CheckAuth(ctx *gin.Context) {
 	}
 	tokenStr := headers[7:]
 
-	//token := sha256.Sum256([]byte("I am a token"))
 	token, _ := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.C.Auth.SignKey), nil
 	})
 	if !token.Valid {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
-			"msg":  "token is not available",
+			"msg":  "token invalid",
 		})
 		return
 	}
@@ -99,8 +103,9 @@ func CheckAuth(ctx *gin.Context) {
 		"msg":  "",
 	})
 }
+
+/*用户注册*/
 func CreateUser(ctx *gin.Context) {
-	salt := "the salt"
 	NewUser := models.User{}
 	if err := ctx.ShouldBind(&NewUser); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
@@ -113,7 +118,7 @@ func CreateUser(ctx *gin.Context) {
 	}
 	//TODO: check signature to confirm address
 
-	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+salt)))
+	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+NewUser.UserName+config.C.Auth.Salt)))
 	user := models.Users{
 		Username: NewUser.UserName,
 		Nickname: NewUser.NickName,
@@ -134,38 +139,30 @@ func CreateUser(ctx *gin.Context) {
 	})
 }
 
-func ChangeUser(ctx *gin.Context) {
-	headers := ctx.GetHeader("Authorization")
-	log.Println(headers)
-	if haspre := strings.HasPrefix(headers, "dabc-t "); !haspre {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
-			"msg":  "error",
-		})
+/*用户信息更改*/
+func UpdateUser(ctx *gin.Context) {
+	isuser := models.Users{}
+	data := &models.UserLogin{}
+	if err := ctx.ShouldBindQuery(data); err != nil {
+		if _, ok := err.(validator.ValidationErrors); ok {
+			ctx.JSON(http.StatusBadRequest, gin.H{
+				"code": http.StatusBadRequest,
+				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.LoginValidation),
+			})
+		}
 		return
 	}
-	if len(headers) <= 7 {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
-			"msg":  "have no authorization",
-		})
-		return
-	}
-	tokenStr := headers[7:]
 
-	//token := sha256.Sum256([]byte("I am a token"))
-	token, _ := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
-		return []byte(config.C.Auth.SignKey), nil
-	})
-
-	if !token.Valid {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
-			"msg":  "token is not available",
+	database.Mysql.Where("username = ?", data.Username).First(&isuser)
+	pwd := fmt.Sprintf("%x", sha512.Sum512([]byte(data.Password+data.Username+config.C.Auth.Salt)))
+	if pwd != isuser.Password {
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
+			"msg":  "用户账号密码验证不通过",
 		})
 		return
 	}
-	salt := "the salt"
+
 	NewUser := models.User{}
 	if err := ctx.ShouldBind(&NewUser); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
@@ -176,9 +173,8 @@ func ChangeUser(ctx *gin.Context) {
 		}
 		return
 	}
-	//TODO: check signature to confirm address
 
-	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+salt)))
+	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+NewUser.UserName+config.C.Auth.Salt)))
 	user := models.Users{
 		Username: NewUser.UserName,
 		Nickname: NewUser.NickName,
@@ -187,7 +183,12 @@ func ChangeUser(ctx *gin.Context) {
 		Address:  NewUser.Address,
 	}
 
-	if err := database.Mysql.Update(&user).Error; err != nil {
+	if NewUser.Address != isuser.Address {
+		//TODO: if address change, signature is needed!
+
+	}
+
+	if err := database.Mysql.Model(&isuser).Update(user).Error; err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,
 			"msg":  err,

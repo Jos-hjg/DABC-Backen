@@ -32,6 +32,7 @@ type Redis struct {
 }
 
 type Auth struct {
+	Salt    string `yaml:"salt"`
 	SignKey string `yaml:"signkey"`
 }
 

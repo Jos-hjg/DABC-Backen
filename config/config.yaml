@@ -15,6 +15,7 @@ redis:
   db: 0
 
 auth:
+  salt: the dabc salt
   signkey: askjdfhasldkfjlkajsdf
 
 
