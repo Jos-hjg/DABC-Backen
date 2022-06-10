@@ -1,11 +1,10 @@
 package controllers
 
 import (
-	"crypto/sha512"
 	"dabc/config"
 	"dabc/database"
 	"dabc/models"
-	"fmt"
+	"dabc/signature"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/go-playground/validator.v9"
@@ -17,7 +16,6 @@ import (
 
 /*用户登录*/
 func UserLogin(ctx *gin.Context) {
-	user := models.Users{}
 	data := &models.UserLogin{}
 	if err := ctx.ShouldBind(data); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
@@ -28,20 +26,16 @@ func UserLogin(ctx *gin.Context) {
 		}
 		return
 	}
-	database.Mysql.Where("username = ?", data.Username).First(&user)
-	fmt.Println(user)
-	pwd := fmt.Sprintf("%x", sha512.Sum512([]byte(data.Password+data.Username+config.C.Auth.Salt)))
-	fmt.Println(pwd)
-	if pwd != user.Password {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": http.StatusOK,
-			"msg":  "账户不存在或密码错误",
+	if !signature.VerifySig(data.Address, data.Signature, []byte(data.Msg)) {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"code": http.StatusUnauthorized,
+			"msg":  "签名信息不匹配",
 		})
 		return
 	}
 
 	claims := &jwt.StandardClaims{
-		Audience:  data.Username,
+		Audience:  data.Address,
 		ExpiresAt: time.Now().Add(10 * 60 * time.Second).Unix(),
 		Issuer:    "DABC-Backen",
 	}
@@ -105,39 +99,39 @@ func CheckAuth(ctx *gin.Context) {
 }
 
 /*用户注册*/
-func CreateUser(ctx *gin.Context) {
-	NewUser := models.User{}
-	if err := ctx.ShouldBind(&NewUser); err != nil {
-		if _, ok := err.(validator.ValidationErrors); ok {
-			ctx.JSON(http.StatusBadRequest, gin.H{
-				"code": http.StatusBadRequest,
-				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.CreateValidation),
-			})
-		}
-		return
-	}
-	//TODO: check signature to confirm address
-
-	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+NewUser.UserName+config.C.Auth.Salt)))
-	user := models.Users{
-		Username: NewUser.UserName,
-		Nickname: NewUser.NickName,
-		Password: NewUser.Password,
-		Phone:    NewUser.Phone,
-		Address:  NewUser.Address,
-	}
-	if err := database.Mysql.Create(&user).Error; err != nil {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": http.StatusOK,
-			"msg":  err,
-		})
-		return
-	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"code": http.StatusOK,
-		"msg":  "",
-	})
-}
+//func CreateUser(ctx *gin.Context) {
+//	NewUser := models.User{}
+//	if err := ctx.ShouldBind(&NewUser); err != nil {
+//		if _, ok := err.(validator.ValidationErrors); ok {
+//			ctx.JSON(http.StatusBadRequest, gin.H{
+//				"code": http.StatusBadRequest,
+//				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.CreateValidation),
+//			})
+//		}
+//		return
+//	}
+//	//TODO: check signature to confirm address
+//
+//	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+NewUser.UserName+config.C.Auth.Salt)))
+//	user := models.Users{
+//		Username: NewUser.UserName,
+//		Nickname: NewUser.NickName,
+//		Password: NewUser.Password,
+//		Phone:    NewUser.Phone,
+//		Address:  NewUser.Address,
+//	}
+//	if err := database.Mysql.Create(&user).Error; err != nil {
+//		ctx.JSON(http.StatusOK, gin.H{
+//			"code": http.StatusOK,
+//			"msg":  err,
+//		})
+//		return
+//	}
+//	ctx.JSON(http.StatusOK, gin.H{
+//		"code": http.StatusOK,
+//		"msg":  "",
+//	})
+//}
 
 /*用户信息更改*/
 func UpdateUser(ctx *gin.Context) {
@@ -152,42 +146,33 @@ func UpdateUser(ctx *gin.Context) {
 		}
 		return
 	}
-
-	database.Mysql.Where("username = ?", data.Username).First(&isuser)
-	pwd := fmt.Sprintf("%x", sha512.Sum512([]byte(data.Password+data.Username+config.C.Auth.Salt)))
-	if pwd != isuser.Password {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": http.StatusOK,
-			"msg":  "用户账号密码验证不通过",
+	//TODO: signature is needed!
+	if !signature.VerifySig(data.Address, data.Signature, []byte(data.Msg)) {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"code": http.StatusUnauthorized,
+			"msg":  "签名信息不匹配",
 		})
 		return
 	}
+
+	database.Mysql.Where("address = ?", data.Address).First(&isuser)
 
 	NewUser := models.User{}
 	if err := ctx.ShouldBind(&NewUser); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"code": http.StatusBadRequest,
-				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.CreateValidation),
+				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.Updatevalidation),
 			})
 		}
 		return
 	}
 
-	NewUser.Password = fmt.Sprintf("%x", sha512.Sum512([]byte(NewUser.Password+NewUser.UserName+config.C.Auth.Salt)))
 	user := models.Users{
-		Username: NewUser.UserName,
 		Nickname: NewUser.NickName,
-		Password: NewUser.Password,
-		Phone:    NewUser.Phone,
 		Address:  NewUser.Address,
+		Email:    NewUser.Email,
 	}
-
-	if NewUser.Address != isuser.Address {
-		//TODO: if address change, signature is needed!
-
-	}
-
 	if err := database.Mysql.Model(&isuser).Update(user).Error; err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,

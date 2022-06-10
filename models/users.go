@@ -5,8 +5,9 @@ import (
 )
 
 type UserLogin struct {
-	Username string `json:"username" binding:"required" form:"username"`
-	Password string `json:"password" binding:"required" form:"password"`
+	Address   string `json:"address" form:"address" binding:"required"`
+	Msg       string `json:"msg" form:"msg" binding:"required"`
+	Signature string `json:"signature" form:"signature" binding:"required"`
 }
 
 type Users struct {
@@ -20,22 +21,29 @@ type User struct {
 	Address   string `json:"address" form:"address" binding:"required"`
 	NickName  string `json:"nickname" form:"nickname"`
 	Signature string `json:"signature" form:"signature" binding:"required"`
+	Email     string `json:"email" form:"email" binding:"required"`
 }
 
 var LoginValidation = ErrorType{
-	"Username": {
-		"required": "用户名称必须",
-	},
-	"Password": {
-		"required": "密码必须",
-	},
-}
-
-var CreateValidation = ErrorType{
 	"Signature": {
 		"required": "签名必须",
 	},
 	"Address": {
 		"required": "钱包地址必须",
+	},
+	"Msg": {
+		"required": "签名信息必须",
+	},
+}
+
+var Updatevalidation = ErrorType{
+	"Signature": {
+		"required": "签名必须",
+	},
+	"Address": {
+		"required": "钱包地址必须",
+	},
+	"Email": {
+		"required": "邮箱必须",
 	},
 }
