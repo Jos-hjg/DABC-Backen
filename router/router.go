@@ -8,8 +8,10 @@ import (
 
 func InitRouter() *gin.Engine {
 	r := gin.Default()
-
-	r.Use(cors.Default())
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	config.AllowHeaders = []string{"Authorization"}
+	r.Use(cors.New(config))
 	//TODO: any router?
 	users := r.Group("/users")
 	users.POST("/login", ac.UserLogin)
