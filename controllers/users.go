@@ -49,7 +49,6 @@ func UserLogin(ctx *gin.Context) {
 			"msg":  "token 签名失败",
 		})
 	}
-	//log.Println(sign)
 	ctx.JSON(http.StatusOK, gin.H{
 		"code":  http.StatusOK,
 		"token": sign,
