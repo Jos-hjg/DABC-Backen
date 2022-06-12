@@ -8,7 +8,6 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/go-playground/validator.v9"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -83,7 +82,13 @@ func CheckAuth(ctx *gin.Context) {
 	token, _ := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.C.Auth.SignKey), nil
 	})
-	log.Println(token)
+	if token == nil {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"code": http.StatusUnauthorized,
+			"msg":  "token invalid",
+		})
+		return
+	}
 	if !token.Valid {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
