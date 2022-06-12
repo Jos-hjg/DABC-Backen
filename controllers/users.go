@@ -64,7 +64,6 @@ Header附带Authorization签名参数
 */
 func CheckAuth(ctx *gin.Context) {
 	headers := ctx.GetHeader("Authorization")
-	log.Println(headers)
 	if haspre := strings.HasPrefix(headers, "dabc-t "); !haspre {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
@@ -84,6 +83,7 @@ func CheckAuth(ctx *gin.Context) {
 	token, _ := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.C.Auth.SignKey), nil
 	})
+	log.Println(token)
 	if !token.Valid {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,

@@ -11,6 +11,7 @@ func InitRouter() *gin.Engine {
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
 	config.AllowHeaders = []string{"Authorization"}
+
 	r.Use(cors.New(config))
 	//TODO: any router?
 	users := r.Group("/users")
