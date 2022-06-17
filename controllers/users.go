@@ -33,7 +33,7 @@ func UserLogin(ctx *gin.Context) {
 		return
 	}
 
-	if err := database.Mysql.Create(models.Users{
+	if err := database.Mysql.Create(&models.Users{
 		Address: data.Address,
 		Nickname: data.Address,
 		Email: "",
