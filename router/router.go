@@ -17,7 +17,7 @@ func InitRouter() *gin.Engine {
 	users := r.Group("/users")
 	users.POST("/login", ac.UserLogin)
 	users.POST("/auth", ac.CheckAuth)
-	//users.POST("/create", ac.CreateUser)
+	users.POST("/find", ac.FindUser)
 	users.PUT("/update", ac.UpdateUser)
 	return r
 }

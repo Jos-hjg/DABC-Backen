@@ -9,6 +9,7 @@ type Config struct {
 	Router Router `yaml:"router"`
 	Mysql  Mysql  `yaml:"mysql"`
 	Redis  Redis  `yaml:"redis"`
+	Email  Email  `yaml:"email"`
 	Auth   Auth   `yaml:"auth"`
 }
 
@@ -29,6 +30,13 @@ type Redis struct {
 	Port     string `yaml:"port"`
 	Password string `yaml:"password"`
 	DB       int    `yaml:"db"`
+}
+
+type Email struct {
+	Host string `yaml:"host"`
+	Port string `yaml:"port"`
+	User string `yaml:"user"`
+	PWD  string  `yaml:"pwd"`
 }
 
 type Auth struct {

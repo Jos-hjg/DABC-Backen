@@ -14,6 +14,12 @@ redis:
   password: huangjg
   db: 0
 
+email:
+  host: smtp.163.com
+  port: 465
+  user: huang_learn@163.com
+  pwd: XUIJDSDUJRHPJPEH
+
 auth:
   salt: the dabc salt
   signkey: askjdfhasldkfjlkajsdf

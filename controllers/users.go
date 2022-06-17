@@ -16,7 +16,7 @@ import (
 /*用户登录*/
 func UserLogin(ctx *gin.Context) {
 	data := &models.UserLogin{}
-	if err := ctx.ShouldBind(data); err != nil {
+	if err := ctx.ShouldBind(&data); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"code": http.StatusBadRequest,
@@ -29,6 +29,18 @@ func UserLogin(ctx *gin.Context) {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
 			"msg":  "签名信息不匹配",
+		})
+		return
+	}
+
+	if err := database.Mysql.Create(models.Users{
+		Address: data.Address,
+		Nickname: data.Address,
+		Email: "",
+	}).Error; err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"code": http.StatusInternalServerError,
+			"msg": err,
 		})
 		return
 	}
@@ -100,6 +112,26 @@ func CheckAuth(ctx *gin.Context) {
 		"code": http.StatusOK,
 		"msg":  "",
 	})
+}
+
+func FindUser(ctx *gin.Context) {
+	isuser := models.Users{}
+	data := models.User{}
+	if err := ctx.ShouldBindQuery(&data); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"code": http.StatusBadRequest,
+			"msg": err,
+		})
+		return
+	}
+
+	database.Mysql.Where("address = ?", data.Address).First(&isuser)
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"msg": isuser,
+	})
+
 }
 
 /*用户注册*/
