@@ -15,6 +15,7 @@ import (
 
 /*用户登录*/
 func UserLogin(ctx *gin.Context) {
+	isuser := models.Users{}
 	data := &models.UserLogin{}
 	if err := ctx.ShouldBind(&data); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
@@ -33,17 +34,22 @@ func UserLogin(ctx *gin.Context) {
 		return
 	}
 
-	if err := database.Mysql.Create(&models.Users{
-		Address: data.Address,
-		Nickname: data.Address,
-		Email: "",
-	}).Error; err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"code": http.StatusInternalServerError,
-			"msg": err,
-		})
-		return
+	database.Mysql.Where("address = ?", data.Address).First(&isuser)
+
+	if (isuser.Address == ""){
+		if err := database.Mysql.Create(&models.Users{
+			Address: data.Address,
+			Nickname: data.Address,
+			Email: "",
+		}).Error; err != nil {
+			ctx.JSON(http.StatusInternalServerError, gin.H{
+				"code": http.StatusInternalServerError,
+				"msg": err,
+			})
+			return
+		}
 	}
+
 
 	claims := &jwt.StandardClaims{
 		Audience:  data.Address,
