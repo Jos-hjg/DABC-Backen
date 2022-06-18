@@ -10,11 +10,11 @@ import (
 func VerifySig(from, sigHex string, msg []byte) bool {
 	fromAddr := common.HexToAddress(from)
 
-	if len(sigHex) != 65 {
+	sig, err := hexutil.Decode(sigHex)
+	if err != nil {
 		return false
 	}
 
-	sig := hexutil.MustDecode(sigHex)
 	if sig[64] == 27 || sig[64] == 28 {
 		sig[64] -= 27
 	}

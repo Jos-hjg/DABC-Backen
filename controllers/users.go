@@ -30,7 +30,7 @@ func UserLogin(ctx *gin.Context) {
 	if !signature.VerifySig(data.Address, data.Signature, []byte(data.Msg)) {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
-			"msg":  "签名信息不匹配",
+			"msg":  "signature error",
 		})
 		return
 	}
