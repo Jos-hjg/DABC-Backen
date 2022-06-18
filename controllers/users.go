@@ -8,7 +8,6 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/go-playground/validator.v9"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -27,7 +26,7 @@ func UserLogin(ctx *gin.Context) {
 		}
 		return
 	}
-	log.Println(data)
+
 	if !signature.VerifySig(data.Address, data.Signature, []byte(data.Msg)) {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
