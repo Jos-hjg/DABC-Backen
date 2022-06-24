@@ -1,6 +1,12 @@
 router:
   port: 9090
 
+chain:
+  rpc: http://106.13.236.225
+  port: 8898
+  contract:
+    address: 0x6E8E1Cc8f3e01A1bE56D5a0B1Fba136fcDE33832
+
 mysql:
   host: 106.13.236.225
   port: 3303

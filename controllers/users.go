@@ -2,14 +2,18 @@ package controllers
 
 import (
 	"dabc/config"
+	"dabc/contract"
 	"dabc/database"
+	"dabc/email"
 	"dabc/models"
 	"dabc/signature"
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/go-playground/validator.v9"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -35,14 +39,15 @@ func UserLogin(ctx *gin.Context) {
 		})
 		return
 	}
-	log.Println(data)
+
 	database.Mysql.Where("address = ?", data.Address).First(&isuser)
 
-	if (isuser.Address == ""){
+	if isuser.Address == "" {
 		if err := database.Mysql.Create(&models.Users{
 			Address: data.Address,
 			Nickname: data.Address,
 			Email: "",
+			Pledged: false,
 		}).Error; err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{
 				"code": http.StatusInternalServerError,
@@ -50,7 +55,22 @@ func UserLogin(ctx *gin.Context) {
 			})
 			return
 		}
+	} else {
+		//TODO: judge pledged
+		//using contract.Client
+		minter, err := contract.Client.Minters(nil, common.HexToAddress(data.Address))
+		if err != nil {
+			to := []string{"1287935492@qq.com"}
+			email.SendEmail(to, "server error", "<h3>can not check minter's data</h3>")
+			log.Println(err)
+		}
+		tbLength, _ := strconv.Atoi(minter.Tblength.String())
+		if tbLength != 0 {
+			//TODO: database's pledged
+			database.Mysql.Model(&isuser).Update(models.Users{Pledged: true})
+		}
 	}
+
 
 
 	claims := &jwt.StandardClaims{
@@ -122,14 +142,17 @@ func CheckAuth(ctx *gin.Context) {
 	})
 }
 
+
 func FindUser(ctx *gin.Context) {
 	isuser := models.Users{}
 	data := models.User{}
 	if err := ctx.ShouldBindQuery(&data); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"code": http.StatusBadRequest,
-			"msg": err,
-		})
+		if _, ok := err.(validator.ValidationErrors); ok {
+			ctx.JSON(http.StatusBadRequest, gin.H{
+				"code": http.StatusBadRequest,
+				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.LoginValidation),
+			})
+		}
 		return
 	}
 
@@ -137,10 +160,16 @@ func FindUser(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"code": http.StatusOK,
-		"msg": isuser,
+		"msg": struct {
+			Address string
+			NickName string
+		}{
+			Address: isuser.Address,
+			NickName: isuser.Nickname,
+		},
 	})
-
 }
+
 
 /*用户注册*/
 //func CreateUser(ctx *gin.Context) {
@@ -179,6 +208,7 @@ func FindUser(ctx *gin.Context) {
 
 /*用户信息更改*/
 func UpdateUser(ctx *gin.Context) {
+	//TODO: before this require, need to send an eamil to verify
 	isuser := models.Users{}
 	data := &models.UserLogin{}
 	if err := ctx.ShouldBindQuery(data); err != nil {
@@ -194,30 +224,42 @@ func UpdateUser(ctx *gin.Context) {
 	if !signature.VerifySig(data.Address, data.Signature, []byte(data.Msg)) {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
 			"code": http.StatusUnauthorized,
-			"msg":  "签名信息不匹配",
+			"msg":  "signature error",
 		})
 		return
 	}
 
 	database.Mysql.Where("address = ?", data.Address).First(&isuser)
 
-	NewUser := models.User{}
+	if isuser.Address == "" {
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
+			"msg": "user is not exist",
+		})
+	}
+
+	NewUser := models.Update{}
+
 	if err := ctx.ShouldBind(&NewUser); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"code": http.StatusBadRequest,
-				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.Updatevalidation),
+				"msg":  models.ValidateError(err.(validator.ValidationErrors), models.UpdateValidation),
 			})
 		}
 		return
 	}
 
-	user := models.Users{
-		Nickname: NewUser.NickName,
-		Address:  NewUser.Address,
-		Email:    NewUser.Email,
+	if NewUser.Email != isuser.Email {
+		//TODO: verify new email
 	}
-	if err := database.Mysql.Model(&isuser).Update(user).Error; err != nil {
+
+	//user := models.Users{
+	//	Nickname: NewUser.NickName,
+	//	//Address:  data.Address,
+	//	Email:    NewUser.Email,
+	//}
+	if err := database.Mysql.Model(&isuser).Update(NewUser).Error; err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,
 			"msg":  err,

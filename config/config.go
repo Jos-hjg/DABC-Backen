@@ -11,6 +11,17 @@ type Config struct {
 	Redis  Redis  `yaml:"redis"`
 	Email  Email  `yaml:"email"`
 	Auth   Auth   `yaml:"auth"`
+	Chain Chain `yaml:"chain"`
+}
+
+type Chain struct {
+	Rpc string `yaml:"rpc"`
+	Port string `yaml:"port"`
+	Contract Contract `yaml:"contract"`
+}
+
+type Contract struct {
+	Address string `yaml:"address"`
 }
 
 type Router struct {
