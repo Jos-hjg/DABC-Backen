@@ -75,7 +75,7 @@ func UserLogin(ctx *gin.Context) {
 
 	claims := &jwt.StandardClaims{
 		Audience:  data.Address,
-		ExpiresAt: time.Now().Add(10 * 60 * time.Second).Unix(),
+		ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
 		Issuer:    "DABC-Backen",
 	}
 
@@ -104,15 +104,15 @@ Header附带Authorization签名参数
 func CheckAuth(ctx *gin.Context) {
 	headers := ctx.GetHeader("Authorization")
 	if haspre := strings.HasPrefix(headers, "dabc-t "); !haspre {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
-			"msg":  "error",
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
+			"msg":  "type error",
 		})
 		return
 	}
 	if len(headers) <= 7 {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
 			"msg":  "have no authorization",
 		})
 		return
@@ -123,15 +123,15 @@ func CheckAuth(ctx *gin.Context) {
 		return []byte(config.C.Auth.SignKey), nil
 	})
 	if token == nil {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
 			"msg":  "token invalid",
 		})
 		return
 	}
 	if !token.Valid {
-		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"code": http.StatusUnauthorized,
+		ctx.JSON(http.StatusOK, gin.H{
+			"code": http.StatusOK,
 			"msg":  "token invalid",
 		})
 		return
