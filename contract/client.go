@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"log"
-	"strconv"
 )
 
 var Client *DABC
@@ -22,11 +20,11 @@ func Init()  {
 	contract := common.HexToAddress(config.C.Chain.Contract.Address)
 	client, err := NewDABC(contract, conn)
 	Client = client
-	ts, err := client.GetTimestamp(nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	tt, _ := strconv.Atoi(ts.String())
-	log.Println("current", tt)
+	//ts, err := client.GetTimestamp(nil)
+	//if err != nil {
+	//	log.Fatalln(err)
+	//}
+	//tt, _ := strconv.Atoi(ts.String())
+	//log.Println("current", tt)
 }
 
