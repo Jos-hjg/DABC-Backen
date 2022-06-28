@@ -61,8 +61,13 @@ func UserLogin(ctx *gin.Context) {
 		minter, err := contract.Client.Minters(nil, common.HexToAddress(data.Address))
 		if err != nil {
 			to := []string{"1287935492@qq.com"}
-			email.SendEmail(to, "server error", "<h3>can not check minter's data</h3>")
+			email.SendEmail(to, "server error", "<h3>Error message:</h3><body>" + err.Error() + "</body>")
 			log.Println(err)
+			ctx.JSON(http.StatusInternalServerError, gin.H{
+				"code": http.StatusInternalServerError,
+				"msg": err,
+			})
+			return
 		}
 		tbLength, _ := strconv.Atoi(minter.Tblength.String())
 		if tbLength != 0 {

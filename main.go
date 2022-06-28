@@ -4,6 +4,7 @@ import (
 	"dabc/config"
 	"dabc/contract"
 	"dabc/database"
+	"dabc/email"
 	"dabc/router"
 	"log"
 )
@@ -12,6 +13,7 @@ func main() {
 	//读取配置文件
 	config.InitCfg("./config/config.yaml")
 	contract.Init()
+	email.InitMail()
 	//初始化 DB
 	if db, err := database.InitDB(); err != nil {
 		log.Fatal(err)
