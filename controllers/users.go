@@ -70,7 +70,7 @@ func UserLogin(ctx *gin.Context) {
 			return
 		}
 		tbLength, _ := strconv.Atoi(minter.Tblength.String())
-		if tbLength != 0 {
+		if tbLength != 0 && !isuser.Pledged{
 			//TODO: database's pledged
 			database.Mysql.Model(&isuser).Update(models.Users{Pledged: true})
 		}
