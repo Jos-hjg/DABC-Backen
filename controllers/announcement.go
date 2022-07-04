@@ -24,7 +24,7 @@ func Announce(ctx *gin.Context)  {
 	}
 	db := database.Mysql.Model(models.Announces{})
 	db.Count(&total)
-	if err := db.Order("id DESC").Offset(page.Page - 1).Limit(page.PageSize).Find(&announce).Error; err != nil {
+	if err := db.Order("id DESC").Offset((page.Page - 1) * page.PageSize).Limit(page.PageSize).Find(&announce).Error; err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": 500,
 			"msg": "数据查询异常",

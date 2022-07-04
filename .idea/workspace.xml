@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c5be514-1956-4846-8820-54c0cdf5a0a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/announcement.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/announcement.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/announcement.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/announcement.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migration.go" beforeDir="false" afterPath="$PROJECT_DIR$/migration.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +143,7 @@
       <workItem from="1656124160205" duration="64000" />
       <workItem from="1656124235636" duration="15572000" />
       <workItem from="1656857891230" duration="199000" />
-      <workItem from="1656898931801" duration="6309000" />
+      <workItem from="1656898931801" duration="7099000" />
     </task>
     <servers />
   </component>
