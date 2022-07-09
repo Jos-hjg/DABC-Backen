@@ -22,7 +22,7 @@ func main() {
 	//db.DropTable(models.Users{})
 	//db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&models.Announces{}) //数据库存在则不会创建，但会被修改成对应的结构
 	for i := 0; i < 10; i++ {
-		db.Create(&models.Announces{SubCN: "DABC 公告测试", SubEn: "DABC announcement Test", CN: "DABC 公告内容", EN: "DABC announcement content"})
+		db.Create(&models.Announces{SubCN: time.Now().String() + " DABC 公告测试", SubEn: time.Now().String() + "DABC announcement Test", CN: "DABC 公告内容", EN: "DABC announcement content"})
 		time.Sleep(3 * time.Second)
 	}
 
