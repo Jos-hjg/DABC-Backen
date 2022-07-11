@@ -249,17 +249,15 @@ func UpdateUser(ctx *gin.Context) {
 		}
 		return
 	}
-
 	if NewUser.Email != isuser.Email {
 		//TODO: verify new email
 	}
 
-	//user := models.Users{
-	//	Nickname: NewUser.NickName,
-	//	//Address:  data.Address,
-	//	Email:    NewUser.Email,
-	//}
-	if err := database.Mysql.Model(&isuser).Update(NewUser).Error; err != nil {
+	user := models.Users{
+		Nickname: NewUser.NickName,
+		Email:    NewUser.Email,
+	}
+	if err := database.Mysql.Model(&isuser).Update(user).Error; err != nil {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,
 			"msg":  err,
