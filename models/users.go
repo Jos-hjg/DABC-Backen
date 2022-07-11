@@ -49,6 +49,6 @@ var LoginValidation = ErrorType{
 
 var UpdateValidation = ErrorType{
 	"NickName": {
-		"required": "签名必须",
+		"required": "昵称必须",
 	},
 }
