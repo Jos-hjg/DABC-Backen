@@ -22,5 +22,6 @@ func InitRouter() *gin.Engine {
 	//announce := r.Group("/announcement")
 	//announce.GET("/", ac.Announce)
 	r.GET("/announcement", ac.Announce)
+
 	return r
 }

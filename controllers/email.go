@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func SendCode(ctx *gin.Context)  {
+func SendCode(ctx *gin.Context) {
 	mail := models.Mail{}
 	if err := ctx.ShouldBind(&mail); err != nil {
 		if _, ok := err.(validator.ValidationErrors); ok {
@@ -20,8 +20,16 @@ func SendCode(ctx *gin.Context)  {
 		return
 	}
 	//TODO: send email
-	code := "123456"
+	code := email.GetRand()
 	to := []string{mail.To}
-	email.SendEmail(to, mail.Subject, "<h3>Code:</h3>" + code)
+	email.SendEmail(to, mail.Subject, "<h3>"+string(code[0]))
 	//TODO: redis record?
+}
+
+func GetCode2Verify(ctx *gin.Context) {
+	rd := email.GetRand()
+	ctx.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"msg":  rd,
+	})
 }

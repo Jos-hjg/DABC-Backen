@@ -15,7 +15,7 @@ type Users struct {
 	Address  string `json:"address" form:"address" gorm:"unique"`
 	Nickname string `json:"nickname" form:"nickname" gorm:"unique"`
 	Email    string `json:"email" form:"email"`
-	Pledged bool `json:"pledged" form:"pledged"`
+	Pledged  bool   `json:"pledged" form:"pledged"`
 }
 
 type User struct {
@@ -25,15 +25,14 @@ type User struct {
 	Email     string `json:"email" form:"email"`
 }
 
-
 type Find struct {
-	Address   string `json:"address" form:"address" binding:"required"`
+	Address string `json:"address" form:"address" binding:"required"`
 }
 
 type Update struct {
-	NickName  string `json:"nickname" form:"nickname" binding:"required"`
-	Email     string `json:"email" form:"email" binding:"required""`
-	EamilVerify string `json:"emailVerify" form:"emailVerify" binding:"required""`
+	NickName    string `json:"nickname" form:"nickname" binding:"required"`
+	Email       string `json:"email" form:"email"`
+	EamilVerify string `json:"emailVerify" form:"emailVerify"`
 }
 
 var LoginValidation = ErrorType{
@@ -51,11 +50,5 @@ var LoginValidation = ErrorType{
 var UpdateValidation = ErrorType{
 	"Signature": {
 		"required": "签名必须",
-	},
-	"Email": {
-		"required": "邮箱必须",
-	},
-	"EmailVerify": {
-		"require": "邮箱验证吗必须",
 	},
 }

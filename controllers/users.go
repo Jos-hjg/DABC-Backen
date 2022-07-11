@@ -44,14 +44,14 @@ func UserLogin(ctx *gin.Context) {
 
 	if isuser.Address == "" {
 		if err := database.Mysql.Create(&models.Users{
-			Address: data.Address,
+			Address:  data.Address,
 			Nickname: data.Address,
-			Email: "",
-			Pledged: false,
+			Email:    "",
+			Pledged:  false,
 		}).Error; err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{
 				"code": http.StatusInternalServerError,
-				"msg": err,
+				"msg":  err,
 			})
 			return
 		}
@@ -61,22 +61,19 @@ func UserLogin(ctx *gin.Context) {
 		minter, err := contract.Client.Minters(nil, common.HexToAddress(data.Address))
 		if err != nil {
 			to := []string{"1287935492@qq.com"}
-			email.SendEmail(to, "server error", "<h3>Error message:</h3><body>" + err.Error() + "</body>")
-			log.Println(err)
+			email.SendEmail(to, "server error", "<h3>Error message:</h3><body>"+err.Error()+"</body>")
 			ctx.JSON(http.StatusInternalServerError, gin.H{
 				"code": http.StatusInternalServerError,
-				"msg": err,
+				"msg":  err,
 			})
 			return
 		}
 		tbLength, _ := strconv.Atoi(minter.Tblength.String())
-		if tbLength != 0 && !isuser.Pledged{
+		if tbLength != 0 && !isuser.Pledged {
 			//TODO: database's pledged
 			database.Mysql.Model(&isuser).Update(models.Users{Pledged: true})
 		}
 	}
-
-
 
 	claims := &jwt.StandardClaims{
 		Audience:  data.Address,
@@ -147,7 +144,6 @@ func CheckAuth(ctx *gin.Context) {
 	})
 }
 
-
 func FindUser(ctx *gin.Context) {
 	isuser := models.Users{}
 	data := models.User{}
@@ -166,15 +162,14 @@ func FindUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code": http.StatusOK,
 		"msg": struct {
-			Address string
+			Address  string
 			NickName string
 		}{
-			Address: isuser.Address,
+			Address:  isuser.Address,
 			NickName: isuser.Nickname,
 		},
 	})
 }
-
 
 /*用户注册*/
 //func CreateUser(ctx *gin.Context) {
@@ -239,7 +234,7 @@ func UpdateUser(ctx *gin.Context) {
 	if isuser.Address == "" {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,
-			"msg": "user is not exist",
+			"msg":  "user is not exist",
 		})
 	}
 

@@ -3,9 +3,10 @@ package redis
 import (
 	"context"
 	"dabc/config"
-	"dabc/controllers"
 	"github.com/go-redis/redis/v8"
 )
+
+var Redis *redis.Client
 
 func InitRedis() (*redis.Client, error) {
 	ctx := context.Background()
@@ -18,6 +19,6 @@ func InitRedis() (*redis.Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	controllers.Redis = rdb
+	Redis = rdb
 	return rdb, nil
 }
