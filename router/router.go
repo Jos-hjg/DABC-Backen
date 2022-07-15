@@ -23,5 +23,8 @@ func InitRouter() *gin.Engine {
 	//announce.GET("/", ac.Announce)
 	r.GET("/announcement", ac.Announce)
 
+	contract := r.Group("/contract")
+	contract.GET("/info", ac.GetDABCContract)
+
 	return r
 }

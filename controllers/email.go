@@ -22,7 +22,7 @@ func SendCode(ctx *gin.Context) {
 	//TODO: send email
 	code := email.GetRand()
 	to := []string{mail.To}
-	email.SendEmail(to, mail.Subject, "<h3>"+string(code[0]))
+	email.SendEmail(to, mail.Subject, "<p>验证吗：</p><h3>"+string(code[0])+"</h3>")
 	//TODO: redis record?
 }
 

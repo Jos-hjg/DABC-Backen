@@ -30,7 +30,7 @@ var (
 
 // DABCMetaData contains all meta data concerning the DABC contract.
 var DABCMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_initialAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Burn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetAchievement\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"achievement\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lv\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"GetDABC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetJC\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jc\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"yj\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lv\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetJCBalance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetPledge\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetReward\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetZT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"ena\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"disa\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetZTBalance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"InvalidTimesLimit\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"Multiple\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"OOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"Pledge\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"currtime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SpanMax\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SpanMin\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"TB\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"valid\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isexist\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"reward\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"ZT\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"fromwho\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"enable\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"burning\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ztBalance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ZTRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"allowed\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"balances\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"}],\"name\":\"changeMaxPledge\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eachMinedMaxCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eachMinedMinCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emptyPool\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"getInvitees\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"getInvitor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLatestPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLatestPriceTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"get_invalidtimes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_timestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"current\",\"type\":\"uint256\"}],\"name\":\"get_valid\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"invitees\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"minters\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"maxPledgeCount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPledgeTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"times\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"invalidTimes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tblength\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ztlength\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalBalance\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"PDRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ZTRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"JCRevenue\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"poolBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pullSome\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"resetInvalidTimes\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"resetTimes\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"reward\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"state_per\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"total\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"winTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_initialAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Burn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DABCPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetAchievement\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"achievement\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lv\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"GetDABC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetJC\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"jc\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"yj\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lv\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetJCBalance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetPledge\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetReward\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"GetZT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"ena\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"disa\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GetZTBalance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"InvalidTimesLimit\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"Multiple\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"OOD\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"Pledge\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"currtime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SpanMax\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SpanMin\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"TB\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"valid\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isexist\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"reward\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"ZT\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"fromwho\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"enable\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"burning\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"time\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ztBalance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ZTRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"allowed\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"balances\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"_price\",\"type\":\"int256\"}],\"name\":\"changeDABCPrice\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_maxAmount\",\"type\":\"uint256\"}],\"name\":\"changeMaxPledge\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eachMinedMaxCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"eachMinedMinCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emptyPool\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBNBLatestPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDABCLatestPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"dabcp\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_inviter\",\"type\":\"address\"}],\"name\":\"getInvitees\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"getInvitor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLatestPriceTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_sender\",\"type\":\"address\"}],\"name\":\"get_invalidtimes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get_timestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"current\",\"type\":\"uint256\"}],\"name\":\"get_valid\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"invitees\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"minters\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"maxPledgeCount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPledgeTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"times\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"tblength\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ztlength\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalBalance\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"PDRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ZTRevenue\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"JCRevenue\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"poolBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pullSome\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"resetTimes\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"reward\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"state_per\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"total\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"winTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // DABCABI is the input ABI used to generate the binding from.
@@ -177,6 +177,37 @@ func (_DABC *DABCTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transa
 // Transact invokes the (paid) contract method with params as input values.
 func (_DABC *DABCTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
 	return _DABC.Contract.contract.Transact(opts, method, params...)
+}
+
+// DABCPrice is a free data retrieval call binding the contract method 0xadafe84a.
+//
+// Solidity: function DABCPrice() view returns(int256)
+func (_DABC *DABCCaller) DABCPrice(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _DABC.contract.Call(opts, &out, "DABCPrice")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// DABCPrice is a free data retrieval call binding the contract method 0xadafe84a.
+//
+// Solidity: function DABCPrice() view returns(int256)
+func (_DABC *DABCSession) DABCPrice() (*big.Int, error) {
+	return _DABC.Contract.DABCPrice(&_DABC.CallOpts)
+}
+
+// DABCPrice is a free data retrieval call binding the contract method 0xadafe84a.
+//
+// Solidity: function DABCPrice() view returns(int256)
+func (_DABC *DABCCallerSession) DABCPrice() (*big.Int, error) {
+	return _DABC.Contract.DABCPrice(&_DABC.CallOpts)
 }
 
 // GetZT is a free data retrieval call binding the contract method 0x2d62a167.
@@ -752,6 +783,68 @@ func (_DABC *DABCCallerSession) EachMinedMinCount() (*big.Int, error) {
 	return _DABC.Contract.EachMinedMinCount(&_DABC.CallOpts)
 }
 
+// GetBNBLatestPrice is a free data retrieval call binding the contract method 0xa90c19ea.
+//
+// Solidity: function getBNBLatestPrice() pure returns(int256)
+func (_DABC *DABCCaller) GetBNBLatestPrice(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _DABC.contract.Call(opts, &out, "getBNBLatestPrice")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetBNBLatestPrice is a free data retrieval call binding the contract method 0xa90c19ea.
+//
+// Solidity: function getBNBLatestPrice() pure returns(int256)
+func (_DABC *DABCSession) GetBNBLatestPrice() (*big.Int, error) {
+	return _DABC.Contract.GetBNBLatestPrice(&_DABC.CallOpts)
+}
+
+// GetBNBLatestPrice is a free data retrieval call binding the contract method 0xa90c19ea.
+//
+// Solidity: function getBNBLatestPrice() pure returns(int256)
+func (_DABC *DABCCallerSession) GetBNBLatestPrice() (*big.Int, error) {
+	return _DABC.Contract.GetBNBLatestPrice(&_DABC.CallOpts)
+}
+
+// GetDABCLatestPrice is a free data retrieval call binding the contract method 0x54ab490e.
+//
+// Solidity: function getDABCLatestPrice() view returns(int256 dabcp)
+func (_DABC *DABCCaller) GetDABCLatestPrice(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _DABC.contract.Call(opts, &out, "getDABCLatestPrice")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetDABCLatestPrice is a free data retrieval call binding the contract method 0x54ab490e.
+//
+// Solidity: function getDABCLatestPrice() view returns(int256 dabcp)
+func (_DABC *DABCSession) GetDABCLatestPrice() (*big.Int, error) {
+	return _DABC.Contract.GetDABCLatestPrice(&_DABC.CallOpts)
+}
+
+// GetDABCLatestPrice is a free data retrieval call binding the contract method 0x54ab490e.
+//
+// Solidity: function getDABCLatestPrice() view returns(int256 dabcp)
+func (_DABC *DABCCallerSession) GetDABCLatestPrice() (*big.Int, error) {
+	return _DABC.Contract.GetDABCLatestPrice(&_DABC.CallOpts)
+}
+
 // GetInvitees is a free data retrieval call binding the contract method 0xe9881a5e.
 //
 // Solidity: function getInvitees(address _inviter) view returns(address[])
@@ -812,37 +905,6 @@ func (_DABC *DABCSession) GetInvitor(arg0 common.Address) (common.Address, error
 // Solidity: function getInvitor(address ) view returns(address)
 func (_DABC *DABCCallerSession) GetInvitor(arg0 common.Address) (common.Address, error) {
 	return _DABC.Contract.GetInvitor(&_DABC.CallOpts, arg0)
-}
-
-// GetLatestPrice is a free data retrieval call binding the contract method 0x8e15f473.
-//
-// Solidity: function getLatestPrice() pure returns(int256)
-func (_DABC *DABCCaller) GetLatestPrice(opts *bind.CallOpts) (*big.Int, error) {
-	var out []interface{}
-	err := _DABC.contract.Call(opts, &out, "getLatestPrice")
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
-}
-
-// GetLatestPrice is a free data retrieval call binding the contract method 0x8e15f473.
-//
-// Solidity: function getLatestPrice() pure returns(int256)
-func (_DABC *DABCSession) GetLatestPrice() (*big.Int, error) {
-	return _DABC.Contract.GetLatestPrice(&_DABC.CallOpts)
-}
-
-// GetLatestPrice is a free data retrieval call binding the contract method 0x8e15f473.
-//
-// Solidity: function getLatestPrice() pure returns(int256)
-func (_DABC *DABCCallerSession) GetLatestPrice() (*big.Int, error) {
-	return _DABC.Contract.GetLatestPrice(&_DABC.CallOpts)
 }
 
 // GetLatestPriceTimestamp is a free data retrieval call binding the contract method 0x0d0d2b01.
@@ -1002,12 +1064,11 @@ func (_DABC *DABCCallerSession) Invitees(arg0 common.Address, arg1 *big.Int) (co
 
 // Minters is a free data retrieval call binding the contract method 0xf46eccc4.
 //
-// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 invalidTimes, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
+// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
 func (_DABC *DABCCaller) Minters(opts *bind.CallOpts, arg0 common.Address) (struct {
 	MaxPledgeCount *big.Int
 	LastPledgeTime *big.Int
 	Times          *big.Int
-	InvalidTimes   *big.Int
 	Tblength       *big.Int
 	Ztlength       *big.Int
 	TotalBalance   *big.Int
@@ -1023,7 +1084,6 @@ func (_DABC *DABCCaller) Minters(opts *bind.CallOpts, arg0 common.Address) (stru
 		MaxPledgeCount *big.Int
 		LastPledgeTime *big.Int
 		Times          *big.Int
-		InvalidTimes   *big.Int
 		Tblength       *big.Int
 		Ztlength       *big.Int
 		TotalBalance   *big.Int
@@ -1039,14 +1099,13 @@ func (_DABC *DABCCaller) Minters(opts *bind.CallOpts, arg0 common.Address) (stru
 	outstruct.MaxPledgeCount = *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
 	outstruct.LastPledgeTime = *abi.ConvertType(out[1], new(*big.Int)).(**big.Int)
 	outstruct.Times = *abi.ConvertType(out[2], new(*big.Int)).(**big.Int)
-	outstruct.InvalidTimes = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
-	outstruct.Tblength = *abi.ConvertType(out[4], new(*big.Int)).(**big.Int)
-	outstruct.Ztlength = *abi.ConvertType(out[5], new(*big.Int)).(**big.Int)
-	outstruct.TotalBalance = *abi.ConvertType(out[6], new(*big.Int)).(**big.Int)
-	outstruct.TotalRevenue = *abi.ConvertType(out[7], new(*big.Int)).(**big.Int)
-	outstruct.PDRevenue = *abi.ConvertType(out[8], new(*big.Int)).(**big.Int)
-	outstruct.ZTRevenue = *abi.ConvertType(out[9], new(*big.Int)).(**big.Int)
-	outstruct.JCRevenue = *abi.ConvertType(out[10], new(*big.Int)).(**big.Int)
+	outstruct.Tblength = *abi.ConvertType(out[3], new(*big.Int)).(**big.Int)
+	outstruct.Ztlength = *abi.ConvertType(out[4], new(*big.Int)).(**big.Int)
+	outstruct.TotalBalance = *abi.ConvertType(out[5], new(*big.Int)).(**big.Int)
+	outstruct.TotalRevenue = *abi.ConvertType(out[6], new(*big.Int)).(**big.Int)
+	outstruct.PDRevenue = *abi.ConvertType(out[7], new(*big.Int)).(**big.Int)
+	outstruct.ZTRevenue = *abi.ConvertType(out[8], new(*big.Int)).(**big.Int)
+	outstruct.JCRevenue = *abi.ConvertType(out[9], new(*big.Int)).(**big.Int)
 
 	return *outstruct, err
 
@@ -1054,12 +1113,11 @@ func (_DABC *DABCCaller) Minters(opts *bind.CallOpts, arg0 common.Address) (stru
 
 // Minters is a free data retrieval call binding the contract method 0xf46eccc4.
 //
-// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 invalidTimes, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
+// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
 func (_DABC *DABCSession) Minters(arg0 common.Address) (struct {
 	MaxPledgeCount *big.Int
 	LastPledgeTime *big.Int
 	Times          *big.Int
-	InvalidTimes   *big.Int
 	Tblength       *big.Int
 	Ztlength       *big.Int
 	TotalBalance   *big.Int
@@ -1073,12 +1131,11 @@ func (_DABC *DABCSession) Minters(arg0 common.Address) (struct {
 
 // Minters is a free data retrieval call binding the contract method 0xf46eccc4.
 //
-// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 invalidTimes, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
+// Solidity: function minters(address ) view returns(uint256 maxPledgeCount, uint256 lastPledgeTime, uint256 times, uint256 tblength, uint256 ztlength, uint256 totalBalance, uint256 totalRevenue, uint256 PDRevenue, uint256 ZTRevenue, uint256 JCRevenue)
 func (_DABC *DABCCallerSession) Minters(arg0 common.Address) (struct {
 	MaxPledgeCount *big.Int
 	LastPledgeTime *big.Int
 	Times          *big.Int
-	InvalidTimes   *big.Int
 	Tblength       *big.Int
 	Ztlength       *big.Int
 	TotalBalance   *big.Int
@@ -1558,6 +1615,27 @@ func (_DABC *DABCTransactorSession) Approve(_spender common.Address, _value *big
 	return _DABC.Contract.Approve(&_DABC.TransactOpts, _spender, _value)
 }
 
+// ChangeDABCPrice is a paid mutator transaction binding the contract method 0x00267082.
+//
+// Solidity: function changeDABCPrice(int256 _price) payable returns()
+func (_DABC *DABCTransactor) ChangeDABCPrice(opts *bind.TransactOpts, _price *big.Int) (*types.Transaction, error) {
+	return _DABC.contract.Transact(opts, "changeDABCPrice", _price)
+}
+
+// ChangeDABCPrice is a paid mutator transaction binding the contract method 0x00267082.
+//
+// Solidity: function changeDABCPrice(int256 _price) payable returns()
+func (_DABC *DABCSession) ChangeDABCPrice(_price *big.Int) (*types.Transaction, error) {
+	return _DABC.Contract.ChangeDABCPrice(&_DABC.TransactOpts, _price)
+}
+
+// ChangeDABCPrice is a paid mutator transaction binding the contract method 0x00267082.
+//
+// Solidity: function changeDABCPrice(int256 _price) payable returns()
+func (_DABC *DABCTransactorSession) ChangeDABCPrice(_price *big.Int) (*types.Transaction, error) {
+	return _DABC.Contract.ChangeDABCPrice(&_DABC.TransactOpts, _price)
+}
+
 // ChangeMaxPledge is a paid mutator transaction binding the contract method 0x799dba39.
 //
 // Solidity: function changeMaxPledge(address _target, uint256 _maxAmount) payable returns()
@@ -1619,27 +1697,6 @@ func (_DABC *DABCSession) PullSome() (*types.Transaction, error) {
 // Solidity: function pullSome() payable returns()
 func (_DABC *DABCTransactorSession) PullSome() (*types.Transaction, error) {
 	return _DABC.Contract.PullSome(&_DABC.TransactOpts)
-}
-
-// ResetInvalidTimes is a paid mutator transaction binding the contract method 0x7a36d796.
-//
-// Solidity: function resetInvalidTimes() returns(bool)
-func (_DABC *DABCTransactor) ResetInvalidTimes(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _DABC.contract.Transact(opts, "resetInvalidTimes")
-}
-
-// ResetInvalidTimes is a paid mutator transaction binding the contract method 0x7a36d796.
-//
-// Solidity: function resetInvalidTimes() returns(bool)
-func (_DABC *DABCSession) ResetInvalidTimes() (*types.Transaction, error) {
-	return _DABC.Contract.ResetInvalidTimes(&_DABC.TransactOpts)
-}
-
-// ResetInvalidTimes is a paid mutator transaction binding the contract method 0x7a36d796.
-//
-// Solidity: function resetInvalidTimes() returns(bool)
-func (_DABC *DABCTransactorSession) ResetInvalidTimes() (*types.Transaction, error) {
-	return _DABC.Contract.ResetInvalidTimes(&_DABC.TransactOpts)
 }
 
 // ResetTimes is a paid mutator transaction binding the contract method 0x74361375.

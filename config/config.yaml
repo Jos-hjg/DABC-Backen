@@ -5,7 +5,7 @@ chain:
   rpc: http://106.13.236.225
   port: 8898
   contract:
-    address: 0x3D322EAab6427d87E4484C9b2d62019fb86a16aB
+    address: 0x33DB2879cA10113403eC3447040A1658d867BC5E
 
 mysql:
   host: 106.13.236.225
